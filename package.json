@@ -1,0 +1,19 @@
+{
+  "name": "scanner-rpa",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "22.22.1"
+  },
+  "scripts": {
+    "build": "node scripts/check.mjs",
+    "test": "node --test test/*.test.mjs",
+    "start": "node scripts/start.mjs",
+    "demo": "node scripts/demo.mjs",
+    "browser:smoke": "node scripts/browser-smoke.mjs"
+  },
+  "dependencies": {
+    "playwright": "1.56.1"
+  }
+}

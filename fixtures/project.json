@@ -1,0 +1,8 @@
+{
+  "name": "装箱门户扫码输入的焦点归属与合箱录入自动化",
+  "probe": "/scan-batches",
+  "identityFields": [
+    "box",
+    "message"
+  ]
+}
