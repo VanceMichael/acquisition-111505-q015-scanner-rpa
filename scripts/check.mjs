@@ -7,5 +7,5 @@ async function check(directory) {
     else if (entry.name.endsWith('.mjs')) { const result = spawnSync(process.execPath, ['--check', path], { stdio: 'inherit' }); if (result.status) process.exit(result.status); }
   }
 }
-for (const directory of ['src', 'provider', 'scripts', 'test']) await check(directory);
+for (const directory of ['src', 'provider', 'assistant', 'scripts', 'test']) await check(directory);
 console.log('语法构建检查完成');

@@ -21,3 +21,5 @@
 ## 浏览器
 
 `npm run browser:smoke` 通过真实 Chromium 访问门户并完成一次键盘扫码和回读。镜像构建时准备依赖，运行不下载浏览器；浏览器驱动和业务接收仍使用 Node.js 22.22.1。此命令验证现有门户，不代表批次录入助手已经提供。
+
+`npm run browser:assistant` 运行真正的浏览器录入助手：从来源 `/scan-batches` 接收操作员确认的扫码批次，在真实 Chromium 中以正常键盘交互（逐段键入 + 结束键）完成合箱登记，不直接调用业务接口。助手按 messageId 与门户回读区分重发和新加同类件；操作员换箱、手工改数或扫码框焦点丢失时在可核对位置停止，并输出已处理、已确认重发、剩余消息与逐条 journal。设计与停止条件见 `docs/source-contract.md`，覆盖测试见 `test/assistant.test.mjs` 与 `test/batch.test.mjs`。
