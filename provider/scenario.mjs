@@ -1,10 +1,10 @@
-export const initialState = () => ({ name: '扫码装箱门户', revision: 1 });
+export const initialState = () => ({ name: '扫码装箱门户', revision: 1, delay: 0, batches: null });
 
 import { readFile } from 'node:fs/promises';
 export async function handle({ incoming, url, body, state, json, bytes }) {
   state.boxes ||= { 'box-a': {}, 'box-b': {} }; state.messages ||= {}; state.mutations ||= 0;
   if (url.pathname === '/portal') { bytes(200, await readFile(new URL('../fixtures/portal.html', import.meta.url)), 'text/html; charset=utf-8'); return true; }
-  if (url.pathname === '/scan-batches') { json(200, { boxId: 'box-a', revision: state.revision, messages: [
+  if (url.pathname === '/scan-batches') { json(200, state.batches || { boxId: 'box-a', revision: state.revision, messages: [
     { messageId: 'scan-1', boxId: 'box-a', chunks: ['EX-', '001'], terminator: 'Enter', intent: 'add' },
     { messageId: 'scan-1', boxId: 'box-a', chunks: ['EX-001'], terminator: 'Enter', intent: 'retry' },
     { messageId: 'scan-2', boxId: 'box-a', chunks: ['EX-001'], terminator: 'Enter', intent: 'add' }
